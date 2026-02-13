@@ -1,0 +1,282 @@
+/* ============================================
+   LAYOUT - Header, Main Content (No Sidebar)
+   Dashboard-centric like reference apps
+   ============================================ */
+
+/* --- Header (compact top bar) --- */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: var(--bg-header);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg);
+    z-index: var(--z-header);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.header-logo {
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-bold);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+}
+
+.header-center {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* Hide sidebar toggle - we don't use sidebar anymore */
+.sidebar-toggle {
+    display: none !important;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--border-radius-full);
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-base);
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    border: none;
+}
+
+.user-avatar:hover {
+    transform: scale(1.08);
+    box-shadow: var(--shadow-glow);
+}
+
+/* --- Sidebar (hidden by default - no sidebar layout) --- */
+.app-sidebar {
+    display: none;
+}
+
+.sidebar-menu {
+    display: none;
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
+/* --- Main Content (centered, no sidebar margin) --- */
+.main-content {
+    margin-top: var(--header-height);
+    min-height: calc(100vh - var(--header-height));
+    padding: var(--spacing-lg) var(--spacing-md);
+    display: flex;
+    justify-content: center;
+}
+
+.page-container {
+    max-width: var(--content-max-width);
+    width: 100%;
+}
+
+/* Back button for module pages */
+.page-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-secondary);
+    font-size: var(--font-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    margin-bottom: var(--spacing-md);
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.page-back:hover {
+    color: var(--accent-blue);
+    background: rgba(129, 140, 248, 0.08);
+}
+
+.page-back svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* --- Auth Screen --- */
+.auth-screen {
+    min-height: 100vh;
+    background: var(--gradient-auth-bg);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: var(--spacing-2xl) var(--spacing-md);
+    overflow-y: auto;
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--border-radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: var(--glass-border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.theme-toggle:hover {
+    color: var(--accent-blue);
+    background: rgba(129, 140, 248, 0.1);
+    border-color: var(--accent-blue);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .app-header {
+        padding: 0 var(--spacing-md);
+    }
+
+    .header-center .btn span.btn-text {
+        display: none;
+    }
+
+    .main-content {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .app-header {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .header-center {
+        gap: var(--spacing-xs);
+    }
+
+    .main-content {
+        padding: var(--spacing-sm);
+    }
+}
+
+/* --- Dark mode specific overrides (these apply when NOT in light mode) --- */
+[data-theme="light"] .btn-success {
+    color: white;
+}
+
+[data-theme="light"] .btn-ghost {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .btn-ghost:hover {
+    background: rgba(99, 102, 241, 0.06);
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .modal-content {
+    background: white;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .form-input,
+[data-theme="light"] .form-select,
+[data-theme="light"] .form-textarea {
+    background: var(--bg-input);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .auth-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .table th {
+    background: var(--bg-body);
+}
+
+/* Default dark overrides */
+.btn-ghost {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+.btn-ghost:hover {
+    background: rgba(129, 140, 248, 0.1);
+    color: var(--accent-blue);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    background: var(--bg-input);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    background: var(--bg-input-focus);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+}
+
+.table th {
+    background: rgba(129, 140, 248, 0.06);
+    color: var(--text-primary);
+}
+
+.table td {
+    border-color: var(--border-color);
+}
